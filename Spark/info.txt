@@ -1,0 +1,26 @@
+sudo apt update && sudo apt install openjdk-17-jre python3-pip -y
+pip3 install pyspark
+
+echo "enter a long text here" > input.txt
+
+nano wordcount.py
+--------------------
+
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.appName("WordCount").getOrCreate()
+sc = spark.sparkContext
+
+text_data = sc.textFile("input.txt")
+
+word_counts = text_data.flatMap(lambda line: line.split(" ")) \
+                       .map(lambda word: (word, 1)) \
+                       .reduceByKey(lambda a, b: a + b)
+
+for word, count in word_counts.collect():
+    print(f"{word}: {count}")
+
+spark.stop()
+
+python3 wordcount.py
+
