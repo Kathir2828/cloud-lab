@@ -1,0 +1,12 @@
+home 
+choose single page web app
+
+setting 
+  {domain, client id }
+  paste 
+
+
+  run
+  paste http://localhost:5173/ on callback, logout, web origin
+
+  login in 
