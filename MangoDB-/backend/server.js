@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 
-mongoose.connect("mongodb+srv://admin123:admin123@cluster0.lqtj80y.mongodb.net/?appName=Cluster0")
+mongoose.connect("mongodb+srv://username:pass@cluster0.lqtj80y.mongodb.net/?appName=Cluster0")
   .then(() => console.log("Connected to MongoDB Atlas!"))
   .catch((err) => console.log("MongoDB connection error:", err));
 
