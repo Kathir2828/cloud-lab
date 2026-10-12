@@ -1,0 +1,21 @@
+npm init -y
+npm install express
+node index.js
+
+download postman
+  open it and put url :
+    url : http://localhost:5000/items
+    click send
+
+get id 
+    url get id = 2 : http://localhost:5000/2
+    click send
+
+update
+    url put id = 10 : http://localhost:5000/10
+    click send
+
+delete
+    url delete id = 10 : http://localhost:5000/10
+    click send
+      
