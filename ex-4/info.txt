@@ -1,0 +1,12 @@
+on backend
+npm init -y
+npm install express mongoose cors
+
+on front end npm i
+
+
+on mangoDB 
+add create cluster
+  add ip 
+  add user admin123, pass also admin123 
+  get string replace and put it on the server code 
