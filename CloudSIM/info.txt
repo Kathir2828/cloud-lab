@@ -1,0 +1,11 @@
+extract cloudsim
+extract in kathir folder
+
+login in cloudsim 
+  file new java 
+      checkout the tick box and choose extracted folder 
+  
+  go to example folder and run 
+  
+  then right click on exmple file folder 
+     new -> java paste code and choose psvm and run
