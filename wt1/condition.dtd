@@ -1,6 +1,0 @@
-<!ELEMENT table (book+)>
-<!ELEMENT book (book_name, author, review, cost)>
-<!ELEMENT book_name (#PCDATA)>
-<!ELEMENT author (#PCDATA)>
-<!ELEMENT review (#PCDATA)>
-<!ELEMENT cost (#PCDATA)>

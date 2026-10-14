@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="courses.xsl"?>
+<!DOCTYPE courses [  <!-- SYSTEM "filename" -->
+    <!ELEMENT courses (course+)>
+    <!ELEMENT course (courseID, name, credits, enrolled)>
+    <!ELEMENT courseID (#PCDATA)>
+    <!ELEMENT name (#PCDATA)>
+    <!ELEMENT credits (#PCDATA)>
+    <!ELEMENT enrolled (#PCDATA)>
+
+    <!ATTLIST course 
+        id ID #REQUIRED
+        dept CDATA #REQUIRED
+        semester CDATA #REQUIRED
+    >
+]>
+<courses>
+    <course id="C101" dept="IT" semester="5">
+        <courseID>101</courseID>
+        <name>Operating Systems</name>
+        <credits>4</credits>
+        <enrolled>60</enrolled>
+    </course>
+    <course id="C102" dept="IT" semester="5">
+        <courseID>102</courseID>
+        <name>Computer Networks</name>
+        <credits>4</credits>
+        <enrolled>60</enrolled>
+    </course>
+    <course id="C103" dept="IT" semester="5">
+        <courseID>103</courseID>
+        <name>Object Oriented Programming</name>
+        <credits>4</credits>
+        <enrolled>60</enrolled>
+    </course>
+</courses>
