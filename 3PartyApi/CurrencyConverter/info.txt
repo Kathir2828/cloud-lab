@@ -1,0 +1,21 @@
+3rd Party API - ExchangeRate-API Currency Converter
+
+1. Install dependencies:
+npm install
+
+2. Run development server:
+npm run dev
+
+3. Build production bundle:
+npm run build
+
+API Info:
+- Provider: ExchangeRate-API (https://www.exchangerate-api.com/)
+- Endpoint: https://v6.exchangerate-api.com/v6/{API_KEY}/latest/{BASE_CURRENCY}
+- API Key: 04bf98bb519146dbded9dccd
+- Example Request: https://v6.exchangerate-api.com/v6/04bf98bb519146dbded9dccd/latest/USD
+
+USD to INR (e.g., 1 USD → ~95.25 INR)
+EUR to USD (e.g., 1 EUR → ~1.12 USD)
+GBP to INR (e.g., 1 GBP → ~125.95 INR)
+AED to INR (e.g., 100 AED → ~2593.68 INR)
