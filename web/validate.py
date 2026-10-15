@@ -1,3 +1,4 @@
+# install lxml using -> pip install lxml
 from lxml import etree
 try:
     parser = etree.XMLParser(dtd_validation=True)
