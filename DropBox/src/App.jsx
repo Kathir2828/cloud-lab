@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const TOKEN = "paste your key from setting generate key";
+const TOKEN = "";
 
 function App() {
   const [selectedFile, setSelectedFile] = useState(null);

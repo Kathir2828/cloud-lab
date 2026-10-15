@@ -11,6 +11,8 @@ setting
  generate key
  paste in the py file 
 
+click mydropbox in right side top icon
+
 
 open dropbox
   go to Apps and see the result :)

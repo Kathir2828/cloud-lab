@@ -4,7 +4,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup
 } from "firebase/auth";
 import {
   collection,
@@ -36,33 +38,91 @@ function App() {
   // 2. READ: Listen for real-time updates from "items" collection
   useEffect(() => {
     const itemsCollection = collection(db, "items");
-    const unsubscribe = onSnapshot(itemsCollection, (snapshot) => {
-      const docsList = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setItems(docsList);
-    });
+    const unsubscribe = onSnapshot(
+      itemsCollection,
+      (snapshot) => {
+        const docsList = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setItems(docsList);
+      },
+      (error) => {
+        console.error("Firestore snapshot error:", error);
+      }
+    );
 
     return () => unsubscribe();
   }, []);
 
   // --- AUTH FUNCTIONS ---
+  // A. Email/Password Sign Up (requires "Email/Password" provider enabled in Console)
   const handleSignUp = async () => {
+    if (!email.trim() || !password) {
+      alert("Please enter both email and password.");
+      return;
+    }
+    if (password.length < 6) {
+      alert("Password must be at least 6 characters long.");
+      return;
+    }
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      await createUserWithEmailAndPassword(auth, email.trim(), password);
       alert("Signed up successfully!");
     } catch (err) {
-      alert("Sign Up Error: " + err.message);
+      console.error(err);
+      if (err.code === "auth/operation-not-allowed" || err.code === "auth/configuration-not-found") {
+        alert(
+          "Sign Up Error: 'Email/Password' provider is NOT enabled in your Firebase Console!\n\n" +
+          "• Enabling 'Google / Gmail' login does not enable typing custom email/passwords.\n" +
+          "• To fix this: Go to Firebase Console -> Authentication -> Sign-in method, click 'Email/Password' and Enable it.\n" +
+          "• OR use the 'Sign in with Google' button below!"
+        );
+      } else {
+        alert("Sign Up Error: " + err.message);
+      }
     }
   };
 
+  // B. Email/Password Sign In
   const handleSignIn = async () => {
+    if (!email.trim() || !password) {
+      alert("Please enter both email and password.");
+      return;
+    }
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email.trim(), password);
       alert("Signed in successfully!");
     } catch (err) {
-      alert("Sign In Error: " + err.message);
+      console.error(err);
+      if (err.code === "auth/operation-not-allowed" || err.code === "auth/configuration-not-found") {
+        alert(
+          "Sign In Error: 'Email/Password' provider is NOT enabled in your Firebase Console!\n\n" +
+          "• Enabling 'Google / Gmail' login does not enable typing custom email/passwords.\n" +
+          "• To fix this: Go to Firebase Console -> Authentication -> Sign-in method, click 'Email/Password' and Enable it.\n" +
+          "• OR use the 'Sign in with Google' button below!"
+        );
+      } else {
+        alert("Sign In Error: " + err.message);
+      }
+    }
+  };
+
+  // C. Google (Gmail) Sign In (uses the Google provider you enabled in Firebase Console)
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(auth, provider);
+      alert("Signed in with Google successfully!");
+    } catch (err) {
+      console.error(err);
+      if (err.code === "auth/operation-not-allowed") {
+        alert("Google sign-in is not enabled in Firebase Console. Go to Authentication -> Sign-in method -> Google and click Enable.");
+      } else if (err.code === "auth/popup-closed-by-user") {
+        // Popup was closed before completion, ignore or notify
+      } else {
+        alert("Google Sign In Error: " + err.message);
+      }
     }
   };
 
@@ -116,11 +176,12 @@ function App() {
         <h2>1. Authentication</h2>
         {user ? (
           <div>
-            <p>Logged in as: <b>{user.email}</b></p>
+            <p>Logged in as: <b>{user.displayName ? `${user.displayName} (${user.email})` : user.email}</b></p>
             <button onClick={handleSignOut}>Sign Out</button>
           </div>
         ) : (
           <div>
+            <p><b>Option 1: Email &amp; Password</b> <small>(Requires 'Email/Password' provider enabled in Firebase Console)</small></p>
             <input
               type="email"
               placeholder="Email"
@@ -138,6 +199,24 @@ function App() {
             <button onClick={handleSignUp}>Sign Up</button>
             {" "}
             <button onClick={handleSignIn}>Sign In</button>
+
+            <div style={{ marginTop: "15px", paddingTop: "15px", borderTop: "1px dashed #ccc" }}>
+              <p><b>Option 2: Google / Gmail Sign In</b> <small>(Uses the Google provider you enabled)</small></p>
+              <button
+                onClick={handleGoogleSignIn}
+                style={{
+                  backgroundColor: "#4285F4",
+                  color: "#fff",
+                  border: "none",
+                  padding: "8px 16px",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  fontWeight: "bold"
+                }}
+              >
+                Sign In with Google (Gmail)
+              </button>
+            </div>
           </div>
         )}
       </section>

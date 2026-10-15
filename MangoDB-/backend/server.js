@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 
-mongoose.connect("mongodb+srv://admin123:admin123@cluster0.lqtj80y.mongodb.net/")
+mongoose.connect("")
   .then(async () => {
     console.log("Connected to MongoDB Atlas!");
     // Seed 4 initial records if empty

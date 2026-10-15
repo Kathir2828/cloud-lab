@@ -25,7 +25,7 @@ app.get("/items/:id", (req, res) => {
 
 app.post("/items", (req, res) => {
   const newItem = {
-    id: items.length ? items[items.length - 1].id + 1 : 1,
+    id: req.body.id,
     name: req.body.name
   };
   items.push(newItem);

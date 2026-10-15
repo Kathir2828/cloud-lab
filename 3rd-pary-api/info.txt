@@ -1,0 +1,16 @@
+3rd Party API - OpenWeatherMap Weather App
+
+1. Install dependencies:
+npm install
+
+2. Run development server:
+npm run dev
+
+3. Build production bundle:
+npm run build
+
+API Info:
+- Provider: OpenWeatherMap (https://openweathermap.org/)
+- Endpoint: https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={API_KEY}
+- API Key: c3fc6270830879c078e3abba42e31a37
+(Note: newly generated OpenWeather keys may take 10 to 60 minutes to activate on their servers)
