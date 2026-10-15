@@ -15,12 +15,12 @@ import {
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDPk2hshtbz1mf_Jo68vu6MkYugjYwKi08",
-  authDomain: "mdirfan-982d5.firebaseapp.com",
-  projectId: "mdirfan-982d5",
-  storageBucket: "mdirfan-982d5.firebasestorage.app",
-  messagingSenderId: "352880984129",
-  appId: "1:352880984129:web:db32e4bb26fbb050ff46c0"
+  apiKey: "x",
+  authDomain: "x",
+  projectId: "x",
+  storageBucket: "x",
+  messagingSenderId: "x",
+  appId: "x"
 };
 
 // Initialize Firebase

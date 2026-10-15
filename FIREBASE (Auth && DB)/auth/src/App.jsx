@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { initializeApp } from 'firebase/app';
-import { 
-  getAuth, 
-  signInWithEmailAndPassword, 
-  createUserWithEmailAndPassword, 
-  signOut, 
-  onAuthStateChanged 
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
 } from 'firebase/auth';
 
 // 1. Your Firebase Configuration (replace with your keys)
 const firebaseConfig = {
-  apiKey: "AIzaSyDPk2hshtbz1mf_Jo68vu6MkYugjYwKi08",
-  authDomain: "mdirfan-982d5.firebaseapp.com",
-  projectId: "mdirfan-982d5",
-  storageBucket: "mdirfan-982d5.firebasestorage.app",
-  messagingSenderId: "352880984129",
-  appId: "1:352880984129:web:db32e4bb26fbb050ff46c0"
+  apiKey: "x",
+  authDomain: "x",
+  projectId: "x",
+  storageBucket: "X",
+  messagingSenderId: "x",
+  appId: "x"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -74,33 +74,33 @@ export default function App() {
     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '80px', fontFamily: 'Arial' }}>
       <form onSubmit={handleSubmit} style={{ width: '300px', display: 'flex', flexDirection: 'column', gap: '10px', padding: '20px', border: '1px solid #ccc', borderRadius: '8px' }}>
         <h2>{isSignUp ? 'Sign Up' : 'Log In'}</h2>
-        
-        <input 
-          type="email" 
-          placeholder="Email" 
-          value={email} 
-          onChange={(e) => setEmail(e.target.value)} 
-          required 
+
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
           style={{ padding: '8px' }}
         />
-        
-        <input 
-          type="password" 
-          placeholder="Password" 
-          value={password} 
-          onChange={(e) => setPassword(e.target.value)} 
-          required 
+
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
           style={{ padding: '8px' }}
         />
-        
+
         <button type="submit" style={{ padding: '10px', background: '#007bff', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
           {isSignUp ? 'Sign Up' : 'Log In'}
         </button>
 
         {error && <p style={{ color: 'red', fontSize: '12px' }}>{error}</p>}
 
-        <p 
-          onClick={() => setIsSignUp(!isSignUp)} 
+        <p
+          onClick={() => setIsSignUp(!isSignUp)}
           style={{ color: '#007bff', fontSize: '14px', cursor: 'pointer', textAlign: 'center', marginTop: '10px' }}
         >
           {isSignUp ? 'Already have an account? Log In' : "Don't have an account? Sign Up"}
