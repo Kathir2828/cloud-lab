@@ -48,7 +48,13 @@ app.get(["/books", "/items"], async (req, res) => {
 // 2. ADD - Insert a new book
 app.post(["/books", "/items"], async (req, res) => {
   try {
-    res.json(await Book.create(req.body));
+    const newBook = await Book.create(req.body);
+    console.log("\n==============================");
+    console.log("📥 Added new book to MongoDB:", newBook);
+    const allBooks = await Book.find();
+    console.log("📊 Full Database Records now:", allBooks);
+    console.log("==============================\n");
+    res.json(newBook);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
