@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Selenium Login Test</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .login-box {
+      background: white;
+      padding: 30px;
+      width: 320px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px #0002;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 11px;
+      margin-top: 6px;
+      border: 1px solid #bbb;
+      border-radius: 6px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 6px;
+      background: #2563eb;
+      color: white;
+      cursor: pointer;
+    }
+
+    #message {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-box">
+    <h2>Login Page</h2>
+
+    <form id="login-form">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" placeholder="Enter email" required>
+
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" placeholder="Enter password" minlength="6" required>
+
+      <button id="login-button" type="submit">
+        Submit
+      </button>
+    </form>
+
+    <p id="message" role="status"></p>
+  </div>
+
+  <script>
+    const form = document.getElementById("login-form");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const email =
+        document.getElementById("email").value.trim();
+
+      const password =
+        document.getElementById("password").value;
+
+      if (
+        email === "student@example.com" &&
+        password === "Demo123!"
+      ) {
+        message.textContent = "Login successful!";
+        message.className = "success";
+      } else {
+        message.textContent =
+          "Invalid email or password.";
+        message.className = "error";
+      }
+    });
+  </script>
+</body>
+
+</html>

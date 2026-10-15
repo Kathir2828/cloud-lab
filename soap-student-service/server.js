@@ -18,18 +18,26 @@ const service = {
   StudentService: {
     StudentServicePort: {
       getStudentMark(args) {
+        console.log("Received POST Request in SOAP Service");
+        console.log("Requested Register Number:", args.registerNumber);
+        console.log("Current Student Database:", students);
+
         const registerNumber = Number(args.registerNumber);
         const student = students[registerNumber];
 
         if (!student) {
+          console.log("Result: Student not found");
           return {
             getStudentMarkResult: "Student not found"
           };
         }
 
+        const resultText = `Name: ${student.name}, Mark: ${student.mark}`;
+        console.log("Found Student:", student);
+        console.log("Sending Response:", resultText);
+
         return {
-          getStudentMarkResult:
-            `Name: ${student.name}, Mark: ${student.mark}`
+          getStudentMarkResult: resultText
         };
       }
     }
