@@ -1,0 +1,20 @@
+npm install
+input request on postman in body (raw xml) paste these code
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope
+    xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"
+    xmlns:stu="http://example.com/student">
+  <soap:Header/>
+  <soap:Body>
+    <stu:getStudentMark>
+      <stu:registerNumber>105</stu:registerNumber>
+    </stu:getStudentMark>
+  </soap:Body>
+</soap:Envelope>
+ 
+ in header put this
+ Content-Type: text/xml; charset=utf-8
+ SOAPAction: http://example.com/student/getStudentMark
+
+ paste the URL in the postman
+ http://localhost:3000/student?wsdl
