@@ -13,7 +13,7 @@ cd ~/mpi_openmp_lab
 
 nano mpi_example.py
 
-#include <stdio.h>
+#include <stdio.h> 
 #include <omp.h>
 
 int main() {
@@ -45,6 +45,33 @@ int main() {
     printf("Factorial of %d: %lld\n", n, fact);
     return 0;
 }
+----------------------------
+#include <stdio.h>
+#include <omp.h>
+
+int main() {
+    int a[] = {10, 50, 20, 90, 30, 70, 40};
+    int n = 7;
+    int max1 = -1, max2 = -1; // Assuming positive numbers
+
+    // Pass 1: Find the absolute maximum
+    #pragma omp parallel for reduction(max:max1)
+    for (int i = 0; i < n; i++) {
+        if (a[i] > max1) max1 = a[i];
+    }
+
+    // Pass 2: Find the maximum that is strictly less than max1
+    #pragma omp parallel for reduction(max:max2)
+    for (int i = 0; i < n; i++) {
+        if (a[i] > max2 && a[i] < max1) max2 = a[i];
+    }
+
+    printf("First Max: %d\n", max1);
+    printf("Second Max: %d\n", max2);
+
+    return 0;
+}
+-------------------------------
 
 #include <stdio.h>
 #include <omp.h>
@@ -104,6 +131,25 @@ max_val = comm.reduce(my_val, op=MPI.MAX, root=0)
 
 if rank == 0:
     print(f"Maximum Value: {max_val}")
+
+---------------------
+
+from mpi4py import MPI
+
+comm = MPI.COMM_WORLD
+rank = comm.Get_rank()
+
+# Assign a value based on rank
+my_val = (rank + 1) * 5
+
+# Gather all values from all processes into a list on root (Process 0)
+all_vals = comm.gather(my_val, root=0)
+
+if rank == 0:
+    # set() removes duplicates, sorted() orders them, [-2] gets the second to last
+    second_max = sorted(set(all_vals))[-2]
+    print(f"Second Maximum Value: {second_max}")
+
 
 -------------------
 from mpi4py import MPI
