@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://admin123:admin123@cluster0.oxindb7.mongodb.net/");
+mongoose.connect("");
 
 const User = mongoose.model('User', {
   id: String,
