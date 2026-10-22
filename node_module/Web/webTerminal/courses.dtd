@@ -1,0 +1,13 @@
+<!ELEMENT courses (course+)>
+
+<!ELEMENT course (name, duration, fees, description?)>
+
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT duration (#PCDATA)>
+<!ELEMENT fees (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+
+<!ATTLIST course
+    id ID #REQUIRED
+    category CDATA #IMPLIED
+>

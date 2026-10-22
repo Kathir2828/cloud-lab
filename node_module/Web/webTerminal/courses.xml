@@ -1,0 +1,26 @@
+<!DOCTYPE courses SYSTEM "courses.dtd">
+<?xml-stylesheet type="text/xsl" href="courses.xsl"?>
+
+<courses xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="courses.xsd">
+
+    <course id="C101" category="Programming">
+        <name>Python</name>
+        <duration>3 months</duration> 
+        <fees>2500</fees>
+        <description>Learn Python programming basics</description>
+    </course>
+
+    <course id="C102" category="Database">
+        <name>MySQL</name>
+        <duration>2 months</duration>
+        <fees>2000</fees>
+    </course>
+
+    <course id="C103">
+        <name>Web Development</name>
+        <duration>4 months</duration>
+        <fees>3500</fees>
+        <description>Learn HTML CSS and JavaScript</description>
+    </course>
+</courses>

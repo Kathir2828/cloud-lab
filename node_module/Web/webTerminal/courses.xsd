@@ -1,0 +1,44 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="courses">
+        <xs:complexType>
+            <xs:sequence>
+
+                <xs:element name="course"
+                            minOccurs="1"
+                            maxOccurs="unbounded">
+
+                    <xs:complexType>
+                        <xs:sequence>
+
+                            <xs:element name="name"
+                                        type="xs:string"/>
+
+                            <xs:element name="duration"
+                                        type="xs:string"/>
+
+                            <xs:element name="fees"
+                                        type="xs:decimal"/>
+
+                            <xs:element name="description"
+                                        type="xs:string"
+                                        minOccurs="0"/>
+
+                        </xs:sequence>
+
+                        <xs:attribute name="id"
+                                      type="xs:string"
+                                      use="required"/>
+
+                        <xs:attribute name="category"
+                                      type="xs:string"
+                                      use="optional"/>
+
+                    </xs:complexType>
+
+                </xs:element>
+
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
